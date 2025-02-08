@@ -21,7 +21,9 @@ import com.alibaba.langengine.core.agent.AgentNextStep;
 import com.alibaba.langengine.core.messages.BaseMessage;
 import com.alibaba.langengine.core.outputparser.BaseOutputParser;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 
+import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -64,17 +66,38 @@ public class RunnableAgent extends Runnable<RunnableInput, AgentNextStep> {
         }
         if(runnableOutput instanceof BaseMessage) {
             BaseMessage baseMessage = (BaseMessage) runnableOutput;
+            log.info("invoke baseMessage is {}", JSON.toJSONString(baseMessage));
             if (baseMessage.getAdditionalKwargs() != null) {
                 // TODO 可能需要增加tool_call
-                Map<String, Object> functionCall = (Map<String, Object>) baseMessage.getAdditionalKwargs().get("function_call");
-                if (functionCall != null && functionCall.get("name") != null) {
-                    log.info("RunnableAgent message:{}", JSON.toJSONString(baseMessage));
-                    AgentAction agentAction = new AgentAction();
-                    agentAction.setTool((String) functionCall.get("name"));
-                    agentAction.setToolInput((String) functionCall.get("arguments"));
-                    agentAction.setLog(baseMessage.getContent());
-                    return agentAction;
+                if(baseMessage.getAdditionalKwargs().get("function_call") != null) {
+                    Map<String, Object> functionCall = (Map<String, Object>) baseMessage.getAdditionalKwargs().get("function_call");
+                    if (functionCall != null && functionCall.get("name") != null) {
+                        log.info("RunnableAgent function_call message:{}", JSON.toJSONString(baseMessage));
+                        AgentAction agentAction = new AgentAction();
+                        agentAction.setTool((String) functionCall.get("name"));
+                        agentAction.setToolInput((String) functionCall.get("arguments"));
+                        agentAction.setLog(baseMessage.getContent());
+                        return agentAction;
+                    }
+                } else if(baseMessage.getAdditionalKwargs().get("tool_calls") != null) {
+                    List<Map<String, Object>> toolCalls = (List<Map<String, Object>>) baseMessage.getAdditionalKwargs().get("tool_calls");
+                    if (!CollectionUtils.isEmpty(toolCalls)) {
+                        log.info("RunnableAgent tool_calls message:{}", JSON.toJSONString(baseMessage));
+                        Map<String, Object> toolCall = toolCalls.get(0);
+                        if(toolCall != null && toolCall.get("function") != null) {
+                            Map<String, Object> functionCall = (Map<String, Object>)toolCall.get("function");
+                            AgentAction agentAction = new AgentAction();
+                            agentAction.setTool((String) functionCall.get("name"));
+                            agentAction.setToolInput((String) functionCall.get("arguments"));
+                            agentAction.setLog(baseMessage.getContent());
+                            if(toolCall.get("id") != null) {
+                                agentAction.setPrevId(toolCall.get("id").toString());
+                            }
+                            return agentAction;
+                        }
+                    }
                 }
+
             }
             return outputParser.invoke((RunnableInput) runnableOutput, config);
         } else if(runnableOutput instanceof RunnableStringVar) {

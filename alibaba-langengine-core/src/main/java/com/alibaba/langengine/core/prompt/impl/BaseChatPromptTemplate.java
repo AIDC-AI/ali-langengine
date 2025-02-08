@@ -19,6 +19,7 @@ import com.alibaba.langengine.core.agent.AgentAction;
 import com.alibaba.langengine.core.messages.AIMessage;
 import com.alibaba.langengine.core.messages.BaseMessage;
 import com.alibaba.langengine.core.messages.FunctionMessage;
+import com.alibaba.langengine.core.messages.ToolMessage;
 import com.alibaba.langengine.core.prompt.BasePromptTemplate;
 import com.alibaba.langengine.core.prompt.ChatPromptValue;
 import com.alibaba.langengine.core.prompt.PromptValue;
@@ -110,26 +111,59 @@ public abstract class BaseChatPromptTemplate extends BasePromptTemplate {
         //	"role": "function"
         //}]
 
-        log.info("agentAction eq {}", agentAction);
+        log.info("agentAction is {}", agentAction);
 
-        AIMessage aiMessage = new AIMessage();
-        Map<String, Object> functionCall = new HashMap<>();
-        functionCall.put("name", agentAction.getTool());
-        functionCall.put("arguments", agentAction.getToolInput());
-        Map<String, Object> additional = new HashMap<>();
-        additional.put("function_call", functionCall);
-        aiMessage.setAdditionalKwargs(additional);
-        if(!StringUtils.isEmpty(agentAction.getLog())) {
-            aiMessage.setContent(agentAction.getLog());
+        boolean toolCallFormat = !StringUtils.isEmpty(agentAction.getPrevId());
+
+        if(!toolCallFormat) {
+            AIMessage aiMessage = new AIMessage();
+            Map<String, Object> functionCall = new HashMap<>();
+            functionCall.put("name", agentAction.getTool());
+            functionCall.put("arguments", agentAction.getToolInput());
+            Map<String, Object> additional = new HashMap<>();
+            additional.put("function_call", functionCall);
+            aiMessage.setAdditionalKwargs(additional);
+            if (!StringUtils.isEmpty(agentAction.getLog())) {
+                aiMessage.setContent(agentAction.getLog());
+            } else {
+                aiMessage.setContent(null);
+            }
+            intermediateStep.add(aiMessage);
+
+            FunctionMessage functionMessage = new FunctionMessage();
+            functionMessage.setName(agentAction.getTool());
+            functionMessage.setContent(agentAction.getObservation());
+            intermediateStep.add(functionMessage);
         } else {
-            aiMessage.setContent(null);
-        }
-        intermediateStep.add(aiMessage);
+            AIMessage aiMessage = new AIMessage();
 
-        FunctionMessage functionMessage = new FunctionMessage();
-        functionMessage.setName(agentAction.getTool());
-        functionMessage.setContent(agentAction.getObservation());
-        intermediateStep.add(functionMessage);
+            List<Map<String, Object>> toolCalls = new ArrayList<>();
+            Map<String, Object> toolCall = new HashMap<>();
+            toolCalls.add(toolCall);
+            Map<String, Object> functionCall = new HashMap<>();
+            functionCall.put("name", agentAction.getTool());
+            functionCall.put("arguments", agentAction.getToolInput());
+            toolCall.put("function", functionCall);
+            toolCall.put("id", agentAction.getPrevId());
+            toolCall.put("type", "function");
+            Map<String, Object> additional = new HashMap<>();
+            additional.put("tool_calls", toolCalls);
+
+            aiMessage.setAdditionalKwargs(additional);
+
+            if (agentAction.getLog() != null) {
+                aiMessage.setContent(agentAction.getLog());
+            } else {
+                aiMessage.setContent("");
+            }
+            intermediateStep.add(aiMessage);
+
+            ToolMessage toolMessage = new ToolMessage();
+//            toolMessage.setName(agentAction.getTool());
+            toolMessage.setTool_call_id(agentAction.getPrevId());
+            toolMessage.setContent(agentAction.getObservation());
+            intermediateStep.add(toolMessage);
+        }
         return intermediateStep;
     }
 

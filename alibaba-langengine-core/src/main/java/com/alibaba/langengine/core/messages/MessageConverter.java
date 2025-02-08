@@ -118,10 +118,14 @@ public class MessageConverter {
             }
             if (message.getAdditionalKwargs() != null && message.getAdditionalKwargs().containsKey("tool_calls")) {
                 chatMessage.setToolCalls((List<Map<String, Object>>) (message.getAdditionalKwargs().get("tool_calls")));
-                if ("".equals(message.getContent())) {
-                    chatMessage.setContent(null);
+//                if ("".equals(message.getContent())) {
+//                    chatMessage.setContent(null);
+//                }
+                if(message.getContent() == null) {
+                    chatMessage.setContent("");
                 }
             }
+            chatMessage.setPrefix(((AIMessage) message).getPrefix());
         } else if (message instanceof SystemMessage) {
             chatMessage.setRole("system");
             chatMessage.setContent(message.getContent());
@@ -152,6 +156,12 @@ public class MessageConverter {
             if(chatMessage.getFunctionCall() != null && chatMessage.getFunctionCall().size() > 0) {
                 Map<String, Object> functionCallMap = new HashMap<>();
                 functionCallMap.put("function_call", chatMessage.getFunctionCall());
+                aiMessage.setToolUse(true);
+                aiMessage.setAdditionalKwargs(functionCallMap);
+            } else if(chatMessage.getToolCalls() != null && chatMessage.getToolCalls().size() > 0) {
+                Map<String, Object> functionCallMap = new HashMap<>();
+                functionCallMap.put("tool_calls", chatMessage.getToolCalls());
+                aiMessage.setToolUse(true);
                 aiMessage.setAdditionalKwargs(functionCallMap);
             } else if(chatMessage.getContent() != null) {
                 aiMessage.setContent(chatMessage.getContent().toString());

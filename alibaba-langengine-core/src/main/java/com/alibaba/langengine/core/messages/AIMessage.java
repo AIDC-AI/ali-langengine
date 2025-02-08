@@ -30,6 +30,8 @@ public class AIMessage extends BaseMessage {
      */
     private boolean toolUse = false;
 
+    private Boolean prefix;
+
     public AIMessage() {}
 
     public AIMessage(String content) {

@@ -88,6 +88,7 @@
 		<module>alibaba-langengine-community/alibaba-langengine-metagpt</module>
 		<module>alibaba-langengine-community/alibaba-langengine-claude</module>
 		<module>alibaba-langengine-community/alibaba-langengine-lindorm</module>
+		<module>alibaba-langengine-community/alibaba-langengine-deepseek</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>

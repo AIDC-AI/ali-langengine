@@ -20,7 +20,14 @@ import lombok.Data;
 @Data
 public class ChatMessage extends BaseMessage {
 
+    /**
+     * 当前聊天消息发送者的名称，在多智能体系统中这个消息需要进行标记
+     */
+    private String name;
+
     private String role;
+
+    private Boolean prefix;
 
     @Override
     public String getType() {

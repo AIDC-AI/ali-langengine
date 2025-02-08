@@ -13,24 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.alibaba.langengine.core.model.fastchat.completion.chat;
+package com.alibaba.langengine.deepseek.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+/**
+ * 相关常量
+ *
+ * @author xiaoxuan.lp
+ */
+public class DeepSeekModelConstants {
 
-import java.util.List;
-import java.util.Map;
+    public static final String DEEPSEEK_CHAT = "deepseek-chat";
 
-@Data
-public class FunctionProperty {
-
-    private String type;
-    private String description;
-    private FunctionItem items;
-
-    @JsonProperty("enum")
-    private List<String> enums;
-
-    private Map<String, FunctionProperty> properties;
-    private List<String> required;
+    public static final String DEEPSEEK_REASONER = "deepseek-reasoner";
 }

@@ -38,6 +38,11 @@ public abstract class BaseMessage implements RunnableInput, RunnableOutput {
     private String content;
 
     /**
+     * 思维链内容
+     */
+    private String reasoningContent;
+
+    /**
      * 消息原始内容
      */
     private String orignalContent;

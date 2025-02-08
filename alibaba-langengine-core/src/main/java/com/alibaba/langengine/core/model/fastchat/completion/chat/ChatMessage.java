@@ -47,6 +47,11 @@ public class ChatMessage {
      */
     Object content;
 
+    Boolean prefix;
+
+    @JsonProperty("reasoning_content")
+    String reasoningContent;
+
     /**
      * 函数调用
      */

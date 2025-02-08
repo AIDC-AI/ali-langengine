@@ -21,6 +21,7 @@ import com.alibaba.langengine.core.model.fastchat.completion.chat.*;
 import com.alibaba.langengine.core.outputs.LLMResult;
 import com.alibaba.langengine.core.prompt.ChatPromptValue;
 import com.alibaba.langengine.core.prompt.PromptValue;
+import com.alibaba.langengine.dashscope.DashScopeModelName;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -31,6 +32,7 @@ public class DashScopeOpenAIChatModelTest {
     public void test_predict() {
         // success
         DashScopeOpenAIChatModel llm = new DashScopeOpenAIChatModel();
+        llm.setModel(DashScopeModelName.DEEPSEEK_R1);
         System.out.println("response:" + llm.predict("你是谁？"));
     }
 

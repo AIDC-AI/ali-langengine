@@ -54,4 +54,6 @@ public class AgentAction implements AgentNextStep {
      */
     @JSONField(serialize = false)
     private List<BaseTool> nextTools;
+
+    private String prevId;
 }

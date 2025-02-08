@@ -123,4 +123,7 @@ public class DashScopeModelName {
 
     // Use with QwenEmbeddingModel
     public static final String TEXT_EMBEDDING_V1 = "text-embedding-v1";
+
+    public static final String DEEPSEEK_R1 = "deepseek-r1";
+    public static final String DEEPSEEK_V3 = "deepseek-v3";
 }
