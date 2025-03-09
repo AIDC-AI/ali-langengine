@@ -76,8 +76,8 @@ public class DashScopeOpenAIChatModel extends BaseChatModel<ChatCompletionReques
 
     public DashScopeOpenAIChatModel(String token) {
         setModel(DashScopeModelName.QWEN_TURBO);
-        setMaxTokens(256);
-        setTopP(0.8d);
+//        setMaxTokens(256);
+//        setTopP(0.8d);
         String serverUrl = !StringUtils.isEmpty(DASHSCOPE_OPENAI_COMPATIBLE_SERVER_URL) ? DASHSCOPE_OPENAI_COMPATIBLE_SERVER_URL : DEFAULT_BASE_URL;
         service = new DefaultLLMService(serverUrl, Duration.ofSeconds(Long.parseLong(DASHSCOPE_API_TIMEOUT)), true, token, DashScopeOpenAIApi.class);
     }
@@ -94,10 +94,25 @@ public class DashScopeOpenAIChatModel extends BaseChatModel<ChatCompletionReques
     public BaseMessage runRequest(ChatCompletionRequest request, List<String> stops, Consumer<BaseMessage> consumer, Map<String, Object> extraAttributes) {
         AtomicReference<BaseMessage> baseMessage = new AtomicReference<>();
 
-        service.execute(service.getApi().createChatCompletion(request)).getChoices().forEach(e -> {
+        ChatCompletionResult completionResult = service.execute(service.getApi().createChatCompletion(request));
+        log.info("DashScopeOpenAIChatModel completionResult is {}", JSON.toJSONString(completionResult));
+        if(completionResult == null) {
+            throw new RuntimeException("create chat completion result failed");
+        }
+
+        Long totalTokens = 0L;
+        if(completionResult.getUsage() != null) {
+            totalTokens = completionResult.getUsage().getTotalTokens();
+        }
+        if(completionResult.getChoices() == null) {
+            throw new RuntimeException("create chat completion choices failed");
+        }
+        Long finalTotalTokens = totalTokens;
+        completionResult.getChoices().forEach(e -> {
             ChatMessage chatMessage = e.getMessage();
             if(chatMessage != null) {
                 BaseMessage message = MessageConverter.convertChatMessageToMessage(chatMessage);
+                message.setTotalTokens(finalTotalTokens);
                 message.setOrignalContent(JSON.toJSONString(e));
                 String role = chatMessage.getRole();
                 String answer;

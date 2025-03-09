@@ -38,6 +38,13 @@ import java.util.*;
 public class ChatModelOpenAITest {
 
     @Test
+    public void test_predict() {
+        // success
+        ChatModelOpenAI llm = new ChatModelOpenAI();
+        System.out.println("response:" + llm.predict("你是谁？"));
+    }
+
+    @Test
     public void test_predict_function_call() {
         // success
         ChatModelOpenAI llm = new ChatModelOpenAI();

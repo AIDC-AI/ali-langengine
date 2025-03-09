@@ -47,7 +47,15 @@ public abstract class BaseMessage implements RunnableInput, RunnableOutput {
      */
     private String orignalContent;
 
+    /**
+     * 额外字段
+     */
     private Map<String, Object> additionalKwargs;
+
+    /**
+     * 合计token数
+     */
+    private Long totalTokens = 0L;
 
     /**
      * 消息的类型，用于序列化

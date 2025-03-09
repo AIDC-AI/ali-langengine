@@ -61,6 +61,7 @@
 		<module>alibaba-langengine-infrastructure/alibaba-langengine-tool</module>
 		<module>alibaba-langengine-infrastructure/alibaba-langengine-gpt</module>
 		<module>alibaba-langengine-infrastructure/alibaba-langengine-mcp</module>
+		<module>alibaba-langengine-infrastructure/alibaba-langengine-deepsearch</module>
 		<module>alibaba-langengine-community/alibaba-langengine-openai</module>
 		<module>alibaba-langengine-community/alibaba-langengine-azure</module>
 		<module>alibaba-langengine-community/alibaba-langengine-dashscope</module>

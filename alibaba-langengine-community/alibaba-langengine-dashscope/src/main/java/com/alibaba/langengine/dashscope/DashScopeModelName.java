@@ -20,6 +20,8 @@ package com.alibaba.langengine.dashscope;
  */
 public class DashScopeModelName {
 
+    public static final String QWEN25_MAX = "qwen-max-2025-01-25";
+
     /**
      * 通义千问系列效果最好的模型，适合复杂、多步骤的任务。
      * 当前等同qwen-max-2024-09-19
