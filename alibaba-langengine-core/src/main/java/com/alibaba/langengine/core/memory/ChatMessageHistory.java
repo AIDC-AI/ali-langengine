@@ -15,10 +15,7 @@
  */
 package com.alibaba.langengine.core.memory;
 
-import com.alibaba.langengine.core.messages.BaseMessage;
-import com.alibaba.langengine.core.messages.HumanMessage;
-import com.alibaba.langengine.core.messages.AIMessage;
-import com.alibaba.langengine.core.messages.ToolMessage;
+import com.alibaba.langengine.core.messages.*;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -37,6 +34,13 @@ public class ChatMessageHistory extends BaseChatMessageHistory {
     @Override
     protected List<BaseMessage> getRawMessages(String sessionId) {
         return rawMessages;
+    }
+
+    @Override
+    public void addSystemMessage(String sessionId, String message) {
+        SystemMessage systemMessage = new SystemMessage();
+        systemMessage.setContent(message);
+        getMessages().add(systemMessage);
     }
 
     @Override

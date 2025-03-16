@@ -50,4 +50,16 @@ public class EasyExcelDocLoaderTest {
             System.out.println(documentList.get(i));
         }
     }
+
+    @Test
+    public void load_knWithHeader_apilist() {
+        // success
+        EasyExcelDocLoader loader = new EasyExcelDocLoader("example_data/apilist.xlsx",null);
+        loader.setReadHeader(true);
+        //loader.setFilePath(filePath);
+        List<Document> documentList = loader.load();
+        for (int i = 0; i < 5; i++) {
+            System.out.println(documentList.get(i));
+        }
+    }
 }

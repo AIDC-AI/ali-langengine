@@ -40,6 +40,7 @@ public class DashScopeOpenAIChatModelTest {
     public void test_predict_function_call() {
         // success
         DashScopeOpenAIChatModel llm = new DashScopeOpenAIChatModel();
+        llm.setToolChoice("required");
 
         List<PromptValue> promptValueList = new ArrayList<>();
         ChatPromptValue promptValue = new ChatPromptValue();

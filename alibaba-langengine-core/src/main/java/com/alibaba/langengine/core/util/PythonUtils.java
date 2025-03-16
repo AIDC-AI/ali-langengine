@@ -65,7 +65,11 @@ public class PythonUtils {
     public static String invokePythonCode(String pythonCodeTemplate, String... args) {
         String pythonCode = String.format(pythonCodeTemplate, args);
         return executePythonCode(getCommandWithCode(pythonCode));
+    }
 
+    public static String invokePythonCodeWithArch(String pythonCodeTemplate, boolean arm64, String... args) {
+        String pythonCode = String.format(pythonCodeTemplate, args);
+        return executePythonCode(getCommandWithCode(pythonCode, arm64));
     }
 
     public static String executePythonCode(String... command) {
@@ -105,6 +109,10 @@ public class PythonUtils {
     }
 
     private static String[] getCommandWithCode(String pythonCode) {
+        return getCommandWithCode(pythonCode, null);
+    }
+
+    private static String[] getCommandWithCode(String pythonCode, Boolean arm64) {
         List<String> commands = new ArrayList<>();
         if (OS.startsWith("Windows")) {
             commands.add("cmd.exe");
@@ -112,6 +120,10 @@ public class PythonUtils {
             commands.add("python");
             commands.add("-c");
         } else {
+            if(arm64 != null) {
+                commands.add("arch");
+                commands.add(arm64 ? "-arm64" : "-x86_64");
+            }
             commands.add("python3");
             commands.add("-c");
         }

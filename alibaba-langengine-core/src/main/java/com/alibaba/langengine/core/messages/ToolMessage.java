@@ -31,6 +31,8 @@ public class ToolMessage extends BaseMessage {
      */
     private String tool_call_id;
 
+    private String name;
+
     @Override
     public String getType() {
         return "tool";

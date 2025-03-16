@@ -5,7 +5,7 @@
 
 	<groupId>com.alibaba</groupId>
 	<artifactId>ali-langengine</artifactId>
-	<version>1.2.0-SNAPSHOT</version>
+	<version>1.2.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>ali-langengine</name>
 	<description>Alibaba LangEngine is an AI application development framework written in Java.</description>
@@ -90,6 +90,7 @@
 		<module>alibaba-langengine-community/alibaba-langengine-claude</module>
 		<module>alibaba-langengine-community/alibaba-langengine-lindorm</module>
 		<module>alibaba-langengine-community/alibaba-langengine-deepseek</module>
+		<module>alibaba-langengine-community/alibaba-langengine-openmanus</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
@@ -273,6 +274,21 @@
 				<artifactId>log4j</artifactId>
 				<version>99.0-does-not-exist</version>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-to-slf4j</artifactId>
+				<version>999-not-exist-SNAPSHOT</version>
+			</dependency>
+<!--			<dependency>-->
+<!--				<groupId>org.apache.logging.log4j</groupId>-->
+<!--				<artifactId>log4j-api</artifactId>-->
+<!--				<version>99.0-does-not-exist</version>-->
+<!--			</dependency>-->
+<!--			<dependency>-->
+<!--				<groupId>org.slf4j</groupId>-->
+<!--				<artifactId>slf4j-simple</artifactId>-->
+<!--				<version>999-not-exist</version>-->
+<!--			</dependency>-->
 			<!-- log4j排除 end -->
 
 			<dependency>

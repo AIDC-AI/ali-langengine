@@ -114,6 +114,15 @@ public abstract class BaseLanguageModel<T> extends Runnable<RunnableInput, Runna
      */
     private Map<String, Object> metadata;
 
+    /**
+     * 工具选择策略，默认为auto
+     * "auto": 表示由大模型进行工具策略的选择。
+     * "required": 如果您希望无论输入什么问题，Function Calling 都可以进行工具调用，可以设定tool_choice参数为"required"；
+     * "none": 如果您希望无论输入什么问题，Function Calling 都不会进行工具调用，可以设定tool_choice参数为"none"；
+     * {"type": "function", "function": {"name": "the_function_to_call"}}
+     * 如果您希望对于某一类问题，Function Calling 能够强制调用某个工具，可以设定tool_choice参数为{"type": "function", "function": {"name": "the_function_to_call"}}，其中the_function_to_call是您指定的工具函数名称。
+     */
+    private String toolChoice = "auto";
 
 
     /**

@@ -113,7 +113,7 @@ public class DeepSeekChatModel extends BaseChatModel<ChatCompletionRequest> {
                 toolFunction.setName(e.getName());
                 toolFunction.setDescription(e.getDescription());
 
-                ToolParameter toolParameter = new ToolParameter();
+                FunctionParameter toolParameter = new FunctionParameter();
                 if(e.getParameters() != null) {
                     toolParameter.setProperties(e.getParameters().getProperties());
                     toolParameter.setType(e.getParameters().getType());

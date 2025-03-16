@@ -19,6 +19,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.langengine.core.callback.BaseCallbackManager;
 import com.alibaba.langengine.core.callback.CallbackManager;
 import com.alibaba.langengine.core.callback.ExecutionContext;
+import com.alibaba.langengine.core.model.fastchat.completion.chat.FunctionDefinition;
+import com.alibaba.langengine.core.model.fastchat.completion.chat.FunctionParameter;
 import com.alibaba.langengine.core.runnables.RunnableStreamCallback;
 import com.alibaba.langengine.core.config.LangEngineConfiguration;
 import com.alibaba.langengine.core.messages.BaseMessage;
@@ -88,6 +90,11 @@ public abstract class BaseTool extends Runnable<Object, RunnableOutput> {
     private Function<String, String> basicFunc;
 
     /**
+     * 参数json
+     */
+    private String parameters;
+
+    /**
      * 工具参数集合
      */
     private Map<String, Object> args = new TreeMap<>();
@@ -98,6 +105,14 @@ public abstract class BaseTool extends Runnable<Object, RunnableOutput> {
     private boolean returnDirect;
 
     private boolean verbose;
+
+    public FunctionDefinition toParams() {
+        FunctionDefinition function = new FunctionDefinition();
+        function.setName(getName());
+        function.setDescription(getDescription());
+        function.setParameters(JSON.parseObject(getParameters(), FunctionParameter.class));
+        return function;
+    }
 
     public void setCallbackManager(BaseCallbackManager callbackManager) {
         if (callbackManager != null && callbackManager.getRunManager() != null) {

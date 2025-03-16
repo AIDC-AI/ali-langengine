@@ -67,6 +67,14 @@ public class ChatMessageSqliteHistory extends BaseChatMessageHistory {
     }
 
     @Override
+    public void addSystemMessage(String sessionId, String message) {
+        if(sessionId == null) {
+            sessionId = this.getSessionId();
+        }
+        sqliteCache.updateMessageInfo(sessionId, "System", message);
+    }
+
+    @Override
     public void addUserMessage(String sessionId, String message) {
         if(sessionId == null) {
             sessionId = this.getSessionId();

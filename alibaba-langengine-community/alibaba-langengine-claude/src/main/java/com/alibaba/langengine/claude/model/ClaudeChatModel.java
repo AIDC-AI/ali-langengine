@@ -65,7 +65,7 @@ public class ClaudeChatModel extends BaseChatModel<ChatCompletionRequest> {
      * How the model should use the provided tools.
      * The model can use a specific tool, any available tool, or decide by itself.
      */
-    private ToolChoice toolChoice;
+    private ToolChoice toolChoiceDomain;
 
     /**
      * 是否流式增量

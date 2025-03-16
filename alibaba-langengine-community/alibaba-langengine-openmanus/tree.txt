@@ -1,0 +1,193 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.alibaba:ali-langengine-openmanus:jar:1.2.0-SNAPSHOT
+[WARNING] 'build.plugins.plugin.version' for org.moditect:moditect-maven-plugin is missing. @ line 135, column 21
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-source-plugin is missing. @ line 110, column 21
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO] 
+[INFO] ----------------< com.alibaba:ali-langengine-openmanus >----------------
+[INFO] Building ali-langengine-openmanus 1.2.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ ali-langengine-openmanus ---
+[INFO] Deleting /Users/xiaoxuan.lp/works/sources/xiaoxuan.lp/ali-langengine-outer/ali-langengine/alibaba-langengine-community/alibaba-langengine-openmanus/target
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ ali-langengine-openmanus ---
+[INFO] com.alibaba:ali-langengine-openmanus:jar:1.2.0-SNAPSHOT
+[INFO] +- com.alibaba:ali-langengine-core:jar:1.2.0-SNAPSHOT:compile
+[INFO] |  +- commons-io:commons-io:jar:2.17.0:compile
+[INFO] |  +- commons-beanutils:commons-beanutils:jar:1.9.3:compile
+[INFO] |  |  +- commons-logging:commons-logging:jar:1.2:compile
+[INFO] |  |  \- commons-collections:commons-collections:jar:3.2.2:compile
+[INFO] |  +- org.apache.commons:commons-lang3:jar:3.10:compile
+[INFO] |  +- com.alibaba:fastjson:jar:1.2.83:compile
+[INFO] |  +- com.google.guava:guava:jar:23.0:compile
+[INFO] |  |  +- com.google.code.findbugs:jsr305:jar:1.3.9:compile
+[INFO] |  |  +- com.google.errorprone:error_prone_annotations:jar:2.0.18:compile
+[INFO] |  |  +- com.google.j2objc:j2objc-annotations:jar:1.1:compile
+[INFO] |  |  \- org.codehaus.mojo:animal-sniffer-annotations:jar:1.14:compile
+[INFO] |  +- com.squareup.retrofit2:retrofit:jar:2.9.0:compile
+[INFO] |  +- com.squareup.retrofit2:adapter-rxjava2:jar:2.9.0:compile
+[INFO] |  |  +- io.reactivex.rxjava2:rxjava:jar:2.2.21:compile
+[INFO] |  |  \- org.reactivestreams:reactive-streams:jar:1.0.3:compile
+[INFO] |  +- com.squareup.retrofit2:converter-jackson:jar:2.9.0:compile
+[INFO] |  +- com.squareup.okhttp3:okhttp:jar:4.11.0:compile
+[INFO] |  |  +- com.squareup.okio:okio:jar:3.2.0:compile
+[INFO] |  |  |  \- com.squareup.okio:okio-jvm:jar:3.2.0:compile
+[INFO] |  |  +- org.jetbrains.kotlin:kotlin-stdlib:jar:1.5.32:compile
+[INFO] |  |  |  +- org.jetbrains:annotations:jar:13.0:compile
+[INFO] |  |  |  \- org.jetbrains.kotlin:kotlin-stdlib-common:jar:1.5.32:compile
+[INFO] |  |  \- org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:1.5.32:compile
+[INFO] |  |     \- org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:1.5.32:compile
+[INFO] |  +- com.squareup.okhttp3:okhttp-sse:jar:4.11.0:compile
+[INFO] |  +- com.squareup.okhttp3:logging-interceptor:jar:4.11.0:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-annotations:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-core:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.10.1:compile
+[INFO] |  +- com.fasterxml.jackson.module:jackson-module-jsonSchema:jar:2.10.1:compile
+[INFO] |  |  \- javax.validation:validation-api:jar:2.0.1.Final:compile
+[INFO] |  +- org.jsoup:jsoup:jar:1.16.1:compile
+[INFO] |  +- dom4j:dom4j:jar:1.6.1:compile
+[INFO] |  |  \- xml-apis:xml-apis:jar:1.0.b2:compile
+[INFO] |  \- com.kjetland:mbknor-jackson-jsonschema_2.12:jar:1.0.34:compile
+[INFO] |     +- org.scala-lang:scala-library:jar:2.12.8:compile
+[INFO] |     \- io.github.classgraph:classgraph:jar:4.8.21:compile
+[INFO] +- com.alibaba:ali-langengine-openai:jar:1.2.0-SNAPSHOT:compile
+[INFO] +- com.alibaba:ali-langengine-dashscope:jar:1.2.0-SNAPSHOT:compile
+[INFO] |  \- com.alibaba:dashscope-sdk-java:jar:2.16.8:compile
+[INFO] |     +- com.google.code.gson:gson:jar:2.8.9:compile
+[INFO] |     +- org.slf4j:slf4j-simple:jar:1.7.36:compile
+[INFO] |     \- com.github.victools:jsonschema-generator:jar:4.31.1:compile
+[INFO] |        \- com.fasterxml:classmate:jar:1.5.1:compile
+[INFO] +- com.alibaba:ali-langengine-docloader:jar:1.2.0-SNAPSHOT:compile
+[INFO] |  +- org.springframework.boot:spring-boot-starter-jdbc:jar:2.5.12:compile
+[INFO] |  |  \- org.springframework:spring-jdbc:jar:5.3.18:compile
+[INFO] |  |     +- org.springframework:spring-beans:jar:5.3.18:compile
+[INFO] |  |     \- org.springframework:spring-tx:jar:5.3.18:compile
+[INFO] |  +- org.mybatis:mybatis-spring:jar:1.3.0:compile
+[INFO] |  +- org.mybatis:mybatis:jar:3.4.2:compile
+[INFO] |  +- org.apache.pdfbox:pdfbox:jar:2.0.28:compile
+[INFO] |  |  \- org.apache.pdfbox:fontbox:jar:2.0.28:compile
+[INFO] |  +- com.alibaba:easyexcel:jar:3.1.1:compile
+[INFO] |  |  \- com.alibaba:easyexcel-core:jar:3.1.1:compile
+[INFO] |  |     +- com.alibaba:easyexcel-support:jar:3.1.1:compile
+[INFO] |  |     +- org.apache.commons:commons-csv:jar:1.8:compile
+[INFO] |  |     \- org.ehcache:ehcache:jar:3.9.9:compile
+[INFO] |  +- org.apache.httpcomponents:httpclient:jar:4.5.13:compile
+[INFO] |  |  \- org.apache.httpcomponents:httpcore:jar:4.4.15:compile
+[INFO] |  +- org.apache.poi:poi-ooxml:jar:5.2.5:compile
+[INFO] |  |  +- org.apache.poi:poi-ooxml-lite:jar:5.2.5:compile
+[INFO] |  |  +- org.apache.commons:commons-compress:jar:1.25.0:compile
+[INFO] |  |  +- com.github.virtuald:curvesapi:jar:1.08:compile
+[INFO] |  |  \- org.apache.commons:commons-collections4:jar:4.4:compile
+[INFO] |  +- org.apache.poi:poi:jar:5.2.5:compile
+[INFO] |  |  +- org.apache.commons:commons-math3:jar:3.6.1:compile
+[INFO] |  |  \- com.zaxxer:SparseBitSet:jar:1.3:compile
+[INFO] |  \- org.apache.xmlbeans:xmlbeans:jar:5.2.0:compile
+[INFO] +- com.alibaba:ali-langengine-tool:jar:1.2.0-SNAPSHOT:compile
+[INFO] |  \- org.apache.httpcomponents:httpmime:jar:4.4:compile
+[INFO] +- com.alibaba:ali-langengine-deepsearch:jar:1.2.0-SNAPSHOT:compile
+[INFO] |  \- edu.uci.ics:crawler4j:jar:4.4.0:compile
+[INFO] |     +- com.sleepycat:je:jar:5.0.84:compile
+[INFO] |     \- org.apache.tika:tika-parsers:jar:1.16:compile
+[INFO] |        +- org.apache.tika:tika-core:jar:1.16:compile
+[INFO] |        +- org.apache.james:apache-mime4j-core:jar:0.8.1:compile
+[INFO] |        +- org.apache.james:apache-mime4j-dom:jar:0.8.1:compile
+[INFO] |        +- org.ccil.cowan.tagsoup:tagsoup:jar:1.2.1:compile
+[INFO] |        \- org.slf4j:jcl-over-slf4j:jar:1.7.36:compile
+[INFO] +- ch.qos.logback:logback-core:jar:1.2.0:compile
+[INFO] +- ch.qos.logback:logback-classic:jar:1.2.0:compile
+[INFO] |  \- org.slf4j:slf4j-api:jar:1.7.36:compile
+[INFO] +- org.seleniumhq.selenium:selenium-java:jar:4.29.0:compile
+[INFO] |  +- org.seleniumhq.selenium:selenium-devtools-v131:jar:4.29.0:compile
+[INFO] |  +- org.seleniumhq.selenium:selenium-devtools-v132:jar:4.29.0:compile
+[INFO] |  +- org.seleniumhq.selenium:selenium-devtools-v133:jar:4.29.0:compile
+[INFO] |  +- org.seleniumhq.selenium:selenium-devtools-v85:jar:4.29.0:compile
+[INFO] |  +- org.seleniumhq.selenium:selenium-edge-driver:jar:3.141.59:compile
+[INFO] |  |  \- org.apache.commons:commons-exec:jar:1.3:compile
+[INFO] |  +- org.seleniumhq.selenium:selenium-firefox-driver:jar:3.141.59:compile
+[INFO] |  +- org.seleniumhq.selenium:selenium-ie-driver:jar:3.141.59:compile
+[INFO] |  +- org.seleniumhq.selenium:selenium-safari-driver:jar:3.141.59:compile
+[INFO] |  \- org.seleniumhq.selenium:selenium-support:jar:3.141.59:compile
+[INFO] +- org.seleniumhq.selenium:selenium-chrome-driver:jar:4.29.0:compile
+[INFO] |  +- com.google.auto.service:auto-service-annotations:jar:1.1.1:compile
+[INFO] |  +- org.seleniumhq.selenium:selenium-chromium-driver:jar:4.29.0:compile
+[INFO] |  +- org.seleniumhq.selenium:selenium-json:jar:4.29.0:compile
+[INFO] |  \- org.seleniumhq.selenium:selenium-manager:jar:4.29.0:compile
+[INFO] +- org.seleniumhq.selenium:selenium-api:jar:4.29.0:compile
+[INFO] |  \- org.jspecify:jspecify:jar:1.0.0:compile
+[INFO] +- org.seleniumhq.selenium:selenium-remote-driver:jar:4.29.0:compile
+[INFO] |  +- io.opentelemetry.semconv:opentelemetry-semconv:jar:1.28.0-alpha:compile
+[INFO] |  +- io.opentelemetry:opentelemetry-api:jar:1.46.0:compile
+[INFO] |  +- io.opentelemetry:opentelemetry-context:jar:1.46.0:compile
+[INFO] |  +- io.opentelemetry:opentelemetry-exporter-logging:jar:1.46.0:compile
+[INFO] |  +- io.opentelemetry:opentelemetry-sdk-common:jar:1.46.0:compile
+[INFO] |  +- io.opentelemetry:opentelemetry-sdk-extension-autoconfigure-spi:jar:1.46.0:compile
+[INFO] |  +- io.opentelemetry:opentelemetry-sdk-extension-autoconfigure:jar:1.46.0:compile
+[INFO] |  |  \- io.opentelemetry:opentelemetry-api-incubator:jar:1.46.0-alpha:runtime
+[INFO] |  +- io.opentelemetry:opentelemetry-sdk-trace:jar:1.46.0:compile
+[INFO] |  +- io.opentelemetry:opentelemetry-sdk:jar:1.46.0:compile
+[INFO] |  |  +- io.opentelemetry:opentelemetry-sdk-metrics:jar:1.46.0:compile
+[INFO] |  |  \- io.opentelemetry:opentelemetry-sdk-logs:jar:1.46.0:compile
+[INFO] |  +- net.bytebuddy:byte-buddy:jar:1.10.22:compile
+[INFO] |  +- org.seleniumhq.selenium:selenium-http:jar:4.29.0:compile
+[INFO] |  \- org.seleniumhq.selenium:selenium-os:jar:4.29.0:compile
+[INFO] +- commons-codec:commons-codec:jar:1.15:compile
+[INFO] +- cn.hutool:hutool-core:jar:5.7.14:compile
+[INFO] +- org.apache.logging.log4j:log4j-to-slf4j:jar:999-not-exist-SNAPSHOT:compile
+[INFO] +- org.apache.logging.log4j:log4j-api:jar:99.0-does-not-exist:compile
+[INFO] +- org.springframework.boot:spring-boot-starter:jar:2.5.12:compile
+[INFO] |  +- org.springframework.boot:spring-boot:jar:2.5.12:compile
+[INFO] |  |  \- org.springframework:spring-context:jar:5.3.18:compile
+[INFO] |  |     +- org.springframework:spring-aop:jar:5.3.18:compile
+[INFO] |  |     \- org.springframework:spring-expression:jar:5.3.18:compile
+[INFO] |  +- org.springframework.boot:spring-boot-autoconfigure:jar:2.5.12:compile
+[INFO] |  +- org.springframework.boot:spring-boot-starter-logging:jar:2.5.12:compile
+[INFO] |  |  \- org.slf4j:jul-to-slf4j:jar:1.7.36:compile
+[INFO] |  +- jakarta.annotation:jakarta.annotation-api:jar:1.3.5:compile
+[INFO] |  +- org.springframework:spring-core:jar:5.3.18:compile
+[INFO] |  |  \- org.springframework:spring-jcl:jar:5.3.18:compile
+[INFO] |  \- org.yaml:snakeyaml:jar:1.28:compile
+[INFO] +- org.springframework.boot:spring-boot-starter-test:jar:3.3.4:test
+[INFO] |  +- org.springframework.boot:spring-boot-test:jar:2.5.12:test
+[INFO] |  +- org.springframework.boot:spring-boot-test-autoconfigure:jar:2.5.12:test
+[INFO] |  +- com.jayway.jsonpath:json-path:jar:2.5.0:test
+[INFO] |  +- jakarta.xml.bind:jakarta.xml.bind-api:jar:2.3.3:test
+[INFO] |  |  \- jakarta.activation:jakarta.activation-api:jar:1.2.2:test
+[INFO] |  +- net.minidev:json-smart:jar:2.4.8:test
+[INFO] |  |  \- net.minidev:accessors-smart:jar:2.4.8:test
+[INFO] |  |     \- org.ow2.asm:asm:jar:9.1:test
+[INFO] |  +- org.assertj:assertj-core:jar:3.19.0:test
+[INFO] |  +- org.awaitility:awaitility:jar:4.0.3:test
+[INFO] |  +- org.hamcrest:hamcrest:jar:2.2:test
+[INFO] |  +- org.mockito:mockito-core:jar:3.3.3:test
+[INFO] |  |  +- net.bytebuddy:byte-buddy-agent:jar:1.10.22:test
+[INFO] |  |  \- org.objenesis:objenesis:jar:2.6:test
+[INFO] |  +- org.mockito:mockito-junit-jupiter:jar:3.9.0:test
+[INFO] |  +- org.skyscreamer:jsonassert:jar:1.5.0:test
+[INFO] |  |  \- com.vaadin.external.google:android-json:jar:0.0.20131108.vaadin1:test
+[INFO] |  +- org.springframework:spring-test:jar:5.3.18:test
+[INFO] |  \- org.xmlunit:xmlunit-core:jar:2.8.4:test
+[INFO] +- org.projectlombok:lombok:jar:1.18.34:compile
+[INFO] +- org.mockito:mockito-all:jar:1.10.19:test
+[INFO] +- org.spockframework:spock-core:jar:2.4-M4-groovy-4.0:test
+[INFO] |  +- org.apache.groovy:groovy:jar:4.0.20:test
+[INFO] |  +- org.junit.platform:junit-platform-engine:jar:1.7.2:test
+[INFO] |  |  +- org.apiguardian:apiguardian-api:jar:1.1.0:test
+[INFO] |  |  +- org.opentest4j:opentest4j:jar:1.2.0:test
+[INFO] |  |  \- org.junit.platform:junit-platform-commons:jar:1.11.3:test
+[INFO] |  \- io.leangen.geantyref:geantyref:jar:1.3.15:test
+[INFO] \- org.junit.jupiter:junit-jupiter:jar:5.11.2:test
+[INFO]    +- org.junit.jupiter:junit-jupiter-api:jar:5.11.2:test
+[INFO]    +- org.junit.jupiter:junit-jupiter-params:jar:5.7.2:test
+[INFO]    \- org.junit.jupiter:junit-jupiter-engine:jar:5.11.2:test
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.424 s
+[INFO] Finished at: 2025-03-16T00:17:04+08:00
+[INFO] ------------------------------------------------------------------------

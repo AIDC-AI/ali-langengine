@@ -45,6 +45,7 @@ import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import static com.alibaba.langengine.dashscope.DashScopeConfiguration.*;
 
@@ -86,7 +87,19 @@ public class DashScopeOpenAIChatModel extends BaseChatModel<ChatCompletionReques
     public ChatCompletionRequest buildRequest(List<ChatMessage> chatMessages, List<FunctionDefinition> functions, List<String> stops, Consumer<BaseMessage> consumer, Map<String, Object> extraAttributes) {
         ChatCompletionRequest.ChatCompletionRequestBuilder builder = ChatCompletionRequest.builder();
         builder.messages(chatMessages);
-        builder.functions(functions);
+        if(!CollectionUtils.isEmpty(functions)) {
+            List<ToolDefinition> toolDefinitions = functions.stream().map(e -> {
+                ToolDefinition toolDefinition = new ToolDefinition();
+                toolDefinition.setFunction(new ToolFunction());
+                toolDefinition.getFunction().setName(e.getName());
+                toolDefinition.getFunction().setDescription(e.getDescription());
+                toolDefinition.getFunction().setParameters(e.getParameters());
+                return toolDefinition;
+            }).collect(Collectors.toList());
+            builder.tools(toolDefinitions);
+            builder.toolChoice(getToolChoice());
+        }
+//        builder.functions(functions);
         return builder.build();
     }
 
@@ -115,15 +128,25 @@ public class DashScopeOpenAIChatModel extends BaseChatModel<ChatCompletionReques
                 message.setTotalTokens(finalTotalTokens);
                 message.setOrignalContent(JSON.toJSONString(e));
                 String role = chatMessage.getRole();
-                String answer;
+                String answer = null;
                 if(chatMessage.getFunctionCall() != null && chatMessage.getFunctionCall().size() > 0) {
                     if(message instanceof AIMessage) {
                         AIMessage aiMessage = (AIMessage) message;
                         aiMessage.setToolUse(true);
+                        Map<String, Object> functionCallMap = new HashMap<>();
+                        functionCallMap.put("function_call", chatMessage.getFunctionCall());
+                        aiMessage.setAdditionalKwargs(functionCallMap);
+                        answer = JSON.toJSONString(functionCallMap);
                     }
-                    Map<String, Object> functionCallMap = new HashMap<>();
-                    functionCallMap.put("function_call", chatMessage.getFunctionCall());
-                    answer = JSON.toJSONString(functionCallMap);
+                } else if(chatMessage.getToolCalls() != null && chatMessage.getToolCalls().size() > 0) {
+                    if(message instanceof AIMessage) {
+                        AIMessage aiMessage = (AIMessage) message;
+                        aiMessage.setToolUse(true);
+                        Map<String, Object> functionCallMap = new HashMap<>();
+                        functionCallMap.put("tool_calls", chatMessage.getToolCalls());
+                        aiMessage.setAdditionalKwargs(functionCallMap);
+                        answer = JSON.toJSONString(functionCallMap);
+                    }
                 } else {
                     answer = chatMessage.getContent().toString();
                 }

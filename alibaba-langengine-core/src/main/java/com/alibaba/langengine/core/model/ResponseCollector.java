@@ -16,6 +16,7 @@
 package com.alibaba.langengine.core.model;
 
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -28,18 +29,44 @@ public class ResponseCollector {
 
     private boolean sseInc;
     private List<String> answerContentList = Lists.newArrayList();
+    private List<String> reasoningContentList = Lists.newArrayList();
 
     public ResponseCollector(Boolean sseInc) {
         this.sseInc = sseInc;
     }
 
     public void collect(String content) {
+        if(content == null) {
+            return;
+        }
         answerContentList.add(content);
+    }
+
+    public void thinkCollect(String reasoningContent) {
+        if(reasoningContentList.size() == 0
+                && !StringUtils.isEmpty(reasoningContent)) {
+            reasoningContentList.add("<think>\n");
+        }
+        if(reasoningContentList.size() > 0
+                && !reasoningContentList.stream().anyMatch(e -> e.equals("</think>\n\n"))
+                && StringUtils.isEmpty(reasoningContent)) {
+            reasoningContentList.add("</think>\n\n");
+            return;
+        }
+        if(!StringUtils.isEmpty(reasoningContent)) {
+            reasoningContentList.add(reasoningContent);
+        }
+    }
+
+    public void thinkCollectAll(String reasoningContent) {
+        if(!StringUtils.isEmpty(reasoningContent)) {
+            reasoningContentList.add("<think>\n" + reasoningContent + "</think>\n\n");
+        }
     }
 
     public String joining() {
         if(sseInc) {
-            return String.join("", answerContentList);
+            return String.join("", reasoningContentList) + String.join("", answerContentList);
         } else {
             if (answerContentList.isEmpty()) {
                 return "";

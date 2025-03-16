@@ -95,6 +95,24 @@ public class ChatMessageSessionHistory extends BaseChatMessageHistory {
     }
 
     @Override
+    public void addSystemMessage(String sessionId, String message) {
+        List<MessageInfoDO> allMessageInfoDOs = new ArrayList<>();
+        if(sessionId == null) {
+            sessionId = this.getSessionId();
+        }
+        List<MessageInfoDO> messageInfoDOs = inMemoryCache.getMessageInfo(sessionId);
+        if (messageInfoDOs != null) {
+            allMessageInfoDOs.addAll(messageInfoDOs);
+        }
+        MessageInfoDO messageInfoDO = new MessageInfoDO();
+        messageInfoDO.setSessionId(sessionId);
+        messageInfoDO.setRole("System");
+        messageInfoDO.setContent(message);
+        allMessageInfoDOs.add(messageInfoDO);
+        inMemoryCache.updateMessageInfo(sessionId, allMessageInfoDOs);
+    }
+
+    @Override
     public void addUserMessage(String sessionId, String message) {
         List<MessageInfoDO> allMessageInfoDOs = new ArrayList<>();
         if(sessionId == null) {

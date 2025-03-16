@@ -26,7 +26,7 @@ public class ToolFunction {
 
     private String description;
 
-    private ToolParameter parameters;
+    private FunctionParameter parameters;
 
     private List<String> required;
 

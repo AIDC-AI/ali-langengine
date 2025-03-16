@@ -109,6 +109,23 @@ public abstract class BaseChatMessageHistory {
     }
 
     /**
+     * 向存储添加系统消息
+     *
+     * @param message
+     */
+    public void addSystemMessage(String message) {
+        addSystemMessage(null, message);
+    }
+
+    /**
+     * 向存储添加系统消息
+     *
+     * @param sessionId
+     * @param message
+     */
+    public abstract void addSystemMessage(String sessionId, String message);
+
+    /**
      * 向存储添加用户消息
      *
      * @param message

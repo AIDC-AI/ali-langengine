@@ -90,7 +90,7 @@ public class DashScopeChatModelTest {
         ToolFunction toolFunction=new ToolFunction();
         toolFunction.setName("SystemMonitoringQueryTool");
         toolFunction.setDescription("这是一个系统水位查询工具，系统可以被称作应用，也可以称作一个具体的英文名称，使用此工具，可以查询系统的cpu和内存利用率，用于判断和分析系统是否有问题。");
-        ToolParameter toolParameter=new ToolParameter();
+        FunctionParameter toolParameter=new FunctionParameter();
         toolParameter.setType("object");
         Map<String, FunctionProperty> properties= new HashMap<>();
         FunctionProperty functionProperty = new FunctionProperty();
@@ -117,7 +117,7 @@ public class DashScopeChatModelTest {
         ToolFunction toolFunction=new ToolFunction();
         toolFunction.setName("RedisSystemMonitoringQueryTool");
         toolFunction.setDescription("这是一个redis水位查询工具，redis可以被称作缓存，使用此工具，可以查询redis缓存的cpu和内存利用率，用于判断和分析系统是否有问题。");
-        ToolParameter toolParameter=new ToolParameter();
+        FunctionParameter toolParameter= new FunctionParameter();
         toolParameter.setType("object");
         Map<String, FunctionProperty> properties= new HashMap<>();
         FunctionProperty functionProperty = new FunctionProperty();
