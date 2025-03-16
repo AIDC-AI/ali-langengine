@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
-public class  BrowserUseTool extends BaseTool {
+public class BrowserUseTool extends BaseTool {
 
     private WebDriver driver;
     private static final int MAX_LENGTH = 3000;
@@ -42,6 +42,7 @@ public class  BrowserUseTool extends BaseTool {
             "\t\t\t\t\"navigate\",\n" +
             "\t\t\t\t\"click\",\n" +
             "\t\t\t\t\"input_text\",\n" +
+            "\t\t\t\t\"key_enter\",\n" +
             "\t\t\t\t\"screenshot\",\n" +
             "\t\t\t\t\"get_html\",\n" +
             "\t\t\t\t\"get_text\",\n" +
@@ -93,6 +94,9 @@ public class  BrowserUseTool extends BaseTool {
             "\t\t\t\"index\",\n" +
             "\t\t\t\"text\"\n" +
             "\t\t],\n" +
+            "\t\t\"key_enter\": [\n" +
+            "\t\t\t\"index\"\n" +
+            "\t\t],\n" +
             "\t\t\"execute_js\": [\n" +
             "\t\t\t\"script\"\n" +
             "\t\t],\n" +
@@ -115,6 +119,7 @@ public class  BrowserUseTool extends BaseTool {
                 "- 'navigate': Go to a specific URL, 默认打开谷歌搜索\n" +
                 "- 'click': Click an element by index\n" +
                 "- 'input_text': Input text into an element\n" +
+                "- 'key_enter': Hit the Enter key\n" +
                 "- 'screenshot': Capture a screenshot\n" +
                 "- 'get_html': Get page HTML content\n" +
                 "- 'get_text': Get text content of the page\n" +
@@ -201,6 +206,14 @@ public class  BrowserUseTool extends BaseTool {
                     WebElement inputElement = driver.findElements(By.cssSelector("input, textarea")).get(index);
                     inputElement.sendKeys(text);
                     return new ToolExecuteResult("Input '" + text + "' into element at index " + index);
+
+                case "key_enter":
+                    if (index == null) {
+                        return new ToolExecuteResult("Index are required for 'key_enter' action");
+                    }
+                    WebElement inputElement2 = driver.findElements(By.cssSelector("input, textarea")).get(index);
+                    inputElement2.sendKeys(Keys.RETURN);
+                    return new ToolExecuteResult("Hit the enter key at index " + index);
 
                 case "screenshot":
                     TakesScreenshot screenshot = (TakesScreenshot) driver;
