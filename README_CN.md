@@ -8,7 +8,7 @@
 <img src="https://img.shields.io/badge/License-Apache%202.0-green.svg" alt="License">
 <img src="https://img.shields.io/github/stars/AIDC-AI/ali-langengine?color=yellow" alt="Stars">
 <img src="https://img.shields.io/github/issues/AIDC-AI/ali-langengine?color=red" alt="Issues">
-<img src="https://img.shields.io/badge/python-3.8-purple.svg" alt="Python">
+<img src="https://img.shields.io/badge/Java-000000?logo=OpenJDK" alt="Java">
 </div>
 </h4>
 
