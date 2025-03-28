@@ -1,3 +1,17 @@
+
+# Alibaba langengine: an AI application development framework written in Java.
+
+<h4 align="center">
+
+<div align="center">
+<img src="https://img.shields.io/badge/Version-1.0.0-blue.svg" alt="Version"> 
+<img src="https://img.shields.io/badge/License-Apache%202.0-green.svg" alt="License">
+<img src="https://img.shields.io/github/stars/AIDC-AI/ali-langengine?color=yellow" alt="Stars">
+<img src="https://img.shields.io/github/issues/AIDC-AI/ali-langengine?color=red" alt="Issues">
+<img src="https://img.shields.io/badge/python-3.8-purple.svg" alt="Python">
+</div>
+</h4>
+
 **Alibaba langengine**
 
 阿里巴巴langengine是一个基于Java的AI应用开发框架。它赋予LLM两大核心能力：
